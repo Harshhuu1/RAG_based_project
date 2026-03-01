@@ -2,7 +2,7 @@
 
 > A production-grade, agentic RAG system that reasons across your documents, the web, and code — built with full MLOps: experiment tracking, CI/CD, monitoring, and Kubernetes.
 
-![Architecture](docs/architecture.png)
+> 📌 Architecture diagram will be added after full build
 
 ## 🚀 Quick Start
 

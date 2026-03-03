@@ -1,0 +1,36 @@
+ingestion:
+  chunk_size: 512
+  chunk_overlap: 50
+  chunking_strategy: "semantic"
+  supported_formats:
+    - ".pdf"
+    - ".docs"
+    - ".txt"
+    - ".md" 
+embeddings:
+  models: "text-embedding-3-small" 
+  batch_size: 32
+  dimensions: 1536
+
+retrieval:
+  top_k: 5
+  score_threshold: 0.3
+
+agent:
+  model: "gpt-4o"
+  temperature: 0.0
+  max_tokens: 2048
+  max_iterations: 10
+  tools:
+    - "rag_retrieval"
+    - "web_search"
+    - "code_executor" 
+
+evaluation:
+  golden_dataset_path: "data/evaluation/golden_qa.json"
+  min_faithfulness: 0.80
+  min_answer_relevancy: 0.80
+
+monitoring:
+  latency_threshold_ms: 2000
+  error_rate_threshold: 0.05

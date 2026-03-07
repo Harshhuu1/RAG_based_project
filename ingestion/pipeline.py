@@ -41,7 +41,7 @@ def run_pipeline(path:str, experiment_name:str=None)->dict:
     logger.info("step 3/3 - Embedding and storing...")
     total_embedded=embed_documents(chunks)
 
-    #log metrices to MLFlow
+    #log metrics to MLFlow
     mlflow.log_metrics({
         "total_documents": len(docs),
         "total_chunks": len(chunks),

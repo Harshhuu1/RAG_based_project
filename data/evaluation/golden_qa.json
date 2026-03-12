@@ -1,0 +1,30 @@
+[
+    {
+        "question": "What is RAG in AI?",
+        "ground_truth": "RAG stands for retreival Augmented Generation . It combines document retreival with language model Generation to answer questions based on specific documents."
+
+    },
+    {
+        "question": "What is a vector databese?",
+        "ground_truth": "A vector database stores data as high dimensional vector or embeddings, enabling semantic similarity search rather than exact keyword matching."
+
+    },
+
+    {
+        "question":"What is Langchain?",
+        "ground_truth": "Langchain is a framework for building applications powered by large language models, providing tools for chaining LLM calls, document loading ,and agent creation."
+
+    },
+    {
+        "question":"what us MLFlow  used for?",
+        "ground_truth":"Mlflow is an open source plateform for managing the machine learning lifecycle , including experiment tracking, model versioning , and deployment."
+
+
+    },
+    {
+        "question":"What is ChromeDB?",
+        "ground_truth":"ChromaDB is an open source vector database designed for querying embeddings, commonly used in RAG applications."
+    }
+]
+
+

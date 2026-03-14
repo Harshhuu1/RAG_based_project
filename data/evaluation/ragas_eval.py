@@ -116,7 +116,7 @@ def run_evaluation() -> dict:
         mlflow.log_param("evaluation_passed",passed)
 
         logger.success(f"Evaluation complete:{scores}")
-        logger.info("f"evaluation passed:{passed})
+        logger.info("fevaluation passed:{passed}")
 
         return {
             "scores":scores,

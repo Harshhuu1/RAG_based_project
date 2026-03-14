@@ -1,0 +1,53 @@
+name: CI Pipeline
+
+# When to run this workflow
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    # Use a free GitHub Linux server
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1 - Download your code onto the server
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2 - Install Python 3.11 on the server
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # Step 3 - Install all packages from requirements.txt
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Step 4 - Run all tests
+      # API keys are read from GitHub Secrets - never hardcode them!
+      - name: Run tests
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+        run: pytest tests/ -v --cov=. --cov-report=xml
+
+      # Step 5 - Check code formatting
+      # Fails the pipeline if code is not properly formatted
+      - name: Check code formatting
+        run: |
+          pip install black ruff
+          black --check .
+          ruff check .
+
+      # Step 6 - Save coverage report as downloadable artifact
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage.xml

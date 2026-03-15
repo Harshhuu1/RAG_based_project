@@ -14,10 +14,10 @@ class QueryRequest(BaseModel):
     question: str=Field(..., min_length=1, max_length=1000)
     top_k: Optional[int]=Field(default=5, ge=1, le=20)
 
-class IngestionRequest(BaseModel):
+class IngestRequest(BaseModel):
     """Request schema for ingestion documents"""
     path: str=Field(..., description="Path to file or directory")
-    experiment_naem: Optional[str]=None
+    experiment_name: Optional[str]=None
 
 
 #___Responses schemas___

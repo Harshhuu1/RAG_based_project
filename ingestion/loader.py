@@ -8,8 +8,7 @@ from langchain_community.document_loaders import (
     TextLoader,
     UnstructuredMarkdownLoader,
 )
-from langchain.schema import Document
-
+from langchain_core.documents import Document
 from config import ingestion_cfg
 
 # Map file extensions to loader classes
@@ -52,7 +51,7 @@ def load_directory(dir_path:str |Path)->List[Document]:
     all_docs=[]
     supported=set(ingestion_cfg.supported_formats)
 
-    files=[f for f in dir_path.rglob("*") if f.suffix.lower() in supported]
+    files = [f for f in dir_path.rglob("*") if f.suffix.lower() in supported]
 
     for file_path in files:
         try:
@@ -60,6 +59,6 @@ def load_directory(dir_path:str |Path)->List[Document]:
             all_docs.extend(docs)
         except Exception as e:
             logger.warning(f"failed to load {file_path}: {e}")
-        logger.success(f"Total document loaded:{len(all_docs)}")
+    logger.success(f"Total document loaded:{len(all_docs)}")
 
-        return all_docs
+    return all_docs

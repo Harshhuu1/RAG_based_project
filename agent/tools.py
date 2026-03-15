@@ -1,7 +1,7 @@
 from typing import List
 from loguru import logger
 from langchain.tools import tool
-from langchain.schema import Document
+from langchain_core.documents import Document
 from tavily import TavilyClient
 
 from ingestion.embedder import search_documents
@@ -24,7 +24,7 @@ def rag_retrieval(query:str)->str:
     for i ,doc in enumerate(docs):
         source=doc.metadata.get("source","unknown")
         chunk_index=doc.metadata.get("chunk_index",i)
-        result.append(
+        results.append(
             f"[source {i+1}:source -chunk {chunk_index}] \n {doc.page_content}")
     return "\n\n" .join(results)
 
@@ -85,7 +85,7 @@ def code_executor(code:str)->str:
     except Exception as e:
         error =traceback.format_exc()
         logger.error(f"code execution failed:{e}")
-        return f"error :\n{erorr}"
+        return f"Error:\n{error}"
     finally:
         sys.stdout=old_stdout
 

@@ -1,7 +1,7 @@
 from typing import List
 from loguru import logger
 import chromadb
-from lanchain.schema import Document
+from langchain_core.documents import Document
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import Chroma
 

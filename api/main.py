@@ -2,7 +2,7 @@ import time
 from loguru import logger
 from fastapi.middleware.cors import CORSMiddleware
 from prometheus_client import make_asgi_app
-
+from fastapi import FastAPI, UploadFile, File, HTTPException
 from api.schemas import(
     QueryRequest,
     QueryResponse,
@@ -59,7 +59,7 @@ async def health_check():
 @app.post("/query",response_model=QueryResponse)
 async def query(request:QueryRequest):
     """Send a question to the agent """
-    logger.info(f"query received:'{request.questinon[:50]}")
+    logger.info(f"Query received: '{request.question[:50]}'")
     start_time=time.time()
 
     try:
@@ -95,7 +95,7 @@ async def ingest(request:IngestRequest):
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/upload")
-async def upload_file(file:upload_file=File(...)):
+async def upload_file(file: UploadFile = File(...)):
     """upload a file and ingest it."""
     logger.info(f"file upload received:{file.filename}")
 

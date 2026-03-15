@@ -1,12 +1,11 @@
 from typing import List
 from loguru import logger
-from langchain.schema import Document
+from langchain_core.documents import Document
 
-from langchain.text_splitter import (
-    RecursiveCharacterTextSplitter, #fixed size chunking stretegy
-    SentenceTransformersTokenTextSplitter, # sentence aware chunking strategy
+from langchain_text_splitters import (
+    RecursiveCharacterTextSplitter,
+    SentenceTransformersTokenTextSplitter,
 )
-
 from config import ingestion_cfg
 
 def chunk_fixed(docs:List[Document])-> List[Document]:

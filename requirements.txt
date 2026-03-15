@@ -1,4 +1,4 @@
-﻿openai
+openai
 langchain
 langchain-openai
 langchain-community
@@ -9,15 +9,13 @@ tavily-python
 chromadb
 pypdf
 docx2txt
-unstructured
 tiktoken
 mlflow
-dvc
 ragas
 datasets
 evidently
 fastapi
-uvicorn[standard]
+uvicorn
 streamlit
 python-multipart
 pydantic
@@ -25,7 +23,6 @@ pydantic-settings
 loguru
 python-dotenv
 httpx
-tenacity
 numpy
 pandas
 pyyaml

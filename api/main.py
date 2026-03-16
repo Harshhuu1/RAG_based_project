@@ -98,11 +98,11 @@ async def ingest(request:IngestRequest):
 async def upload_file(file: UploadFile = File(...)):
     """Upload a file and ingest it."""
     logger.info(f"File upload received: {file.filename}")
-
-    #save file to data/raw
-    file_path=f"data/raw/{file.filename}"
-    with open(file_path,"wb") as f:
-        content=await file.read()
+    import os
+    os.makedirs("data/raw", exist_ok=True)
+    file_path = f"data/raw/{file.filename}"
+    with open(file_path, "wb") as f:
+        content = await file.read()
         f.write(content)
 
     #ingest the uploaded file

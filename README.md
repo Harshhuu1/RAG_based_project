@@ -1,3 +1,12 @@
+---
+title: DocMind
+emoji: 🧠
+colorFrom: purple
+colorTo: blue
+sdk: docker
+pinned: false
+---
+
 # DocMind — Agentic RAG System with Full MLOps
 
 I built this project to go beyond the typical "LLM wrapper" projects you see everywhere. The goal was to treat a RAG system the way you'd treat a real production ML system — with proper experiment tracking, monitoring, CI/CD, and deployment infrastructure. The chat interface is just the surface layer; the interesting engineering is underneath.

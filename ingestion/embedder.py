@@ -19,15 +19,17 @@ def get_vectorstore():
     """Connect to ChromaDB and return vectorstore."""
     embeddings = get_embeddings()
 
+    client = chromadb.HttpClient(
+        host=settings.chroma_host,
+        port=settings.chroma_port,
+    )
+
     vectorstore = Chroma(
         collection_name=settings.chroma_collection_name,
         embedding_function=embeddings,
-        client_settings=chromadb.Settings(
-            chroma_api_impl="rest",
-            chroma_server_host=settings.chroma_host,
-            chroma_server_http_port=settings.chroma_port,
-        ),
+        client=client,
     )
+    
 
     logger.info(f"Connected to ChromaDB at {settings.chroma_host}:{settings.chroma_port}")
     return vectorstore

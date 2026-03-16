@@ -40,7 +40,7 @@ def web_search(query:str)->str:
     or when the answer is not found in the uploaded documetns"""
 
     logger.info(f"web search tool called with query :'{query[:50]}' ")
-    client=TavilyClient(api=settings.tavily_api_key)
+    client = TavilyClient(api_key=settings.tavily_api_key)
     response=client.search(
         query=query,
         search_depth="basic",

@@ -63,7 +63,7 @@ async def query(request:QueryRequest):
     start_time=time.time()
 
     try:
-        answer=query_agent(request.question)
+        answer = query_agent(request.question, request.chat_history)
         latency_ms=(time.time()-start_time)*1000
 
         return QueryResponse(
@@ -96,8 +96,8 @@ async def ingest(request:IngestRequest):
 
 @app.post("/upload")
 async def upload_file(file: UploadFile = File(...)):
-    """upload a file and ingest it."""
-    logger.info(f"file upload received:{file.filename}")
+    """Upload a file and ingest it."""
+    logger.info(f"File upload received: {file.filename}")
 
     #save file to data/raw
     file_path=f"data/raw/{file.filename}"

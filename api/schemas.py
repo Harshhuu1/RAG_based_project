@@ -10,9 +10,9 @@ from datetime import datetime
 #_____ Request schemas____
 
 class QueryRequest(BaseModel):
-    """request schema for querying the agent."""
-    question: str=Field(..., min_length=1, max_length=1000)
-    top_k: Optional[int]=Field(default=5, ge=1, le=20)
+    question: str = Field(..., min_length=1, max_length=1000)
+    top_k: Optional[int] = Field(default=5, ge=1, le=20)
+    chat_history: Optional[list] = Field(default=[])
 
 class IngestRequest(BaseModel):
     """Request schema for ingestion documents"""

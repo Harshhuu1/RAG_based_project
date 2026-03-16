@@ -80,25 +80,32 @@ def build_graph():
 
 #___Main query function
 
-def query_agent(question: str)-> str:
+def query_agent(question: str, chat_history: list = []) -> str:
     """send a question to the agent and get an answer"""
-    logger.info(f"Query recieved: '{question[:50]}'")
+    logger.info(f"Query received: '{question[:50]}'")
 
-    graph =build_graph()
+    graph = build_graph()
 
-    initial_state={
-        "messages":[HumanMessage(content=question)],
-        "query":question,
-        "final_answer":"",
+    # Build messages with chat history
+    messages = []
+    for msg in chat_history:
+        if msg["role"] == "user":
+            messages.append(HumanMessage(content=msg["content"]))
+        elif msg["role"] == "assistant":
+            messages.append(SystemMessage(content=msg["content"]))
+    messages.append(HumanMessage(content=question))
 
+    initial_state = {
+        "messages": messages,
+        "query": question,
+        "final_answer": "",
     }
 
-    result=graph.invoke(initial_state)
-    final_message=result["messages"][-1]
+    result = graph.invoke(initial_state)
+    final_message = result["messages"][-1]
 
     logger.success("Agent query complete")
     return final_message.content
-
 # What this means:
 
 # add_node → registers each node in the graph

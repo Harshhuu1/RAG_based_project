@@ -22,7 +22,8 @@ class Settings(BaseSettings):
     chroma_host: str=Field(default="localhost",env="CHROMA_HOST")
     chroma_port: int=Field(default=8001, env="CHROMA_PORT")
     chroma_collection_name: str= Field(default="docmind",env="CHROMA_COLLECTION_NAME")
-
+    mlflow_tracking_uri: str = Field(default="http://localhost:5000", env="MLFLOW_TRACKING_URI")
+    mlflow_experiment_name: str = Field(default="docmind-rag", env="MLFLOW_EXPERIMENT_NAME")
 
     #app
     api_host: str=Field(default="0.0.0.0" ,env="API_HOST")
@@ -65,8 +66,9 @@ class EvaluateConfig:
     min_answer_relevancy=PARAMS["evaluation"]["min_answer_relevancy"]
 
 class MonitoringConfig:
-    latency_threshold_ms:int=PARAMS["monitoring"]["latency_threshold_ms"]
-    error_rate_threshold :float=PARAMS["monitoring"]["error_rate_threshold"]
+    latency_threshold_ms: int = PARAMS["monitoring"]["latency_threshold_ms"]
+    error_rate_threshold: float = PARAMS["monitoring"]["error_rate_threshold"]
+# MLflow
 
 
 # ── Singleton instances ───────────────────────────────

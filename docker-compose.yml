@@ -1,4 +1,4 @@
-version: "3.9"
+
 
 services:
   
@@ -50,8 +50,8 @@ services:
     restart: unless-stopped
 
   #Prometheus
-  Prometheus:
-    image: prom/Prometheus:latest
+  prometheus:
+    image: prom/prometheus:latest
     ports:
       - "9090:9090"
     volumes:
@@ -61,7 +61,7 @@ services:
   grafana:
     image: grafana/grafana:latest
     ports:
-      - "3000:3000"
+      - "3001:3000"
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-admin123}
     volumes:

@@ -7,13 +7,11 @@ from ingestion.embedder import embed_documents
 from config import settings, ingestion_cfg,embedding_cfg
 
 
-def run_pipeline(path:str, experiment_name:str=None)->dict:
-    """Run the full ingestion pipeline
-    Load->chunk->enbed->store"""
-
+def run_pipeline(path: str, experiment_name: str = None) -> dict:
     mlflow.set_tracking_uri(settings.mlflow_tracking_uri)
     mlflow.set_experiment(experiment_name or settings.mlflow_experiment_name)
 
+    mlflow.end_run()  # Close any existing run first
     with mlflow.start_run():
         #log parameters to MLflow
         mlflow.log_params({

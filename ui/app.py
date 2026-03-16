@@ -14,8 +14,8 @@ st.set_page_config(
 
 #____ Constants_______
 
-API_URL="http://api:8000"
-
+import os
+API_URL = os.getenv("API_URL", "http://api:8000")
 
 #____Session state____
 if "messages" not in st.session_state:

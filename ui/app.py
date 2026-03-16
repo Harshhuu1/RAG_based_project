@@ -39,7 +39,7 @@ with st.sidebar:
 
     #File Uploader
     st.subheader(" Upload Documents")
-    uplaoded_file= st.file_uploader(
+    uploaded_file= st.file_uploader(
         "Upload a document",
         type=["Pdf","txt", "docx","md"],
     )
@@ -47,7 +47,7 @@ with st.sidebar:
     if uploaded_file:
         if st.button(" Ingest Document"):
             with st.spinner("Ingesting document..."):
-                files={"file":(uploaded_file.name,uplaoded_file,uplaoded_file.type)}    
+                files={"file":(uploaded_file.name,uploaded_file,uploaded_file.type)}    
                 response=httpx.post(f"{API_URL}/upload",files=files)
 
                 if response.status_code==200:
@@ -131,8 +131,8 @@ if prompt:= st.chat_input("Ask a question..."):
             #add to history
 
                 st.session_state.messages.append({
-                    "role":"assistant",
-                    "latency":answer,
+                    "role": "assistant",
+                    "content": answer,
                     "latency": latency,
                 })
 

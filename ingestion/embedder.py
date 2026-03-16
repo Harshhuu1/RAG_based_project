@@ -11,7 +11,7 @@ def get_embeddings():
     """FGet OpenAI embeddings model."""
     return OpenAIEmbeddings(
         model=embedding_cfg.model,
-        openai_api_key=setting.openai_api_key,
+        openai_api_key=settings.openai_api_key,
 
     )
 

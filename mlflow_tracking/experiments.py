@@ -71,7 +71,7 @@ def run_all_experiments(test_data_path:str)->Dict[str,Any]:
     values=list(EXPERIMENT_GRID.values())
     combinations=list(product(*values))
 
-    logger.info(f"Running {len(combination)} experiments...")
+    logger.info(f"Running {len(combinations)} experiments...")
      
     best_run_id=None
     best_chunk =0
@@ -112,7 +112,7 @@ def run_all_experiments(test_data_path:str)->Dict[str,Any]:
                     "run_id": mlflow.active_run().info.run_id
                 })
 
-                logger.success(f"experiment {i+1} completee : {result}")
+                logger.success(f"experiment {i+1} complete : {result}")
 
             except Exception as e:
                 logger.error(f"Experiment {i+1} failed : {e}")

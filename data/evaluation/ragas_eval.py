@@ -1,11 +1,13 @@
 import json
 import mlflow 
+from loguru import logger
+from ragas import evaluate
 from loguru import Dataset
 from ragas.metrics import (
     faithfulness,
     answer_relevancy,
     context_recall,
-    context_prescision,
+    context_precision,
 )
 
 from langchain_openai import ChatOpenAI , OpenAIEmbeddings
@@ -39,7 +41,7 @@ def  prepare_ragas_dataset(golden_data:list) ->Dataset:
     contexts=[]
     ground_truths=[]
 
-    for item in goldenn_data:
+    for item in golden_data:
         question=item["question"]
         ground_truth=item["ground_truth"]
 
@@ -70,7 +72,7 @@ def run_evaluation() -> dict:
     """Run full RAGAS evaluation and log to MLflow"""
 
     mlflow.set_tracking_uri(settings.mlflow_tracking_uri)
-    mlflow.set_experiment(setting.mlflow_experiment_name)
+    mlflow.set_experiment(settings.mlflow_experiment_name)
 
     with mlflow.start_run(run_name="ragas_evaluation"):
 
@@ -90,14 +92,14 @@ def run_evaluation() -> dict:
             metrics=[
                 faithfulness,
                 answer_relevancy,
-                context_prescision,
+                context_precision,
                 context_recall,
             ],
         )
         scores={
             "faithfulness":results["faithfulness"],
             "answer_relevancy":results["answer_relevancy"],
-            "context_prescision":results["context_prescision"],
+            "context_precision":results["context_precision"],
             "context_recall":results["context_recall"],
 
         }
@@ -116,7 +118,7 @@ def run_evaluation() -> dict:
         mlflow.log_param("evaluation_passed",passed)
 
         logger.success(f"Evaluation complete:{scores}")
-        logger.info("fevaluation passed:{passed}")
+        logger.info("evaluation passed:{passed}")
 
         return {
             "scores":scores,

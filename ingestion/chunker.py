@@ -38,7 +38,7 @@ def chunk_documents(docs:List[Document])->List[Document]:
     if strategy == "fixed":
         chunks= chunk_fixed(docs)
     elif strategy== "sentence":
-        chunks=chunks_sentence(docs)
+        chunks=chunk_sentence(docs)
     else:
         logger.warning(f"unknown strategy '{strategy}',falling back to fixed")
         chunks=chunk_fixed(docs)

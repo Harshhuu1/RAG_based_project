@@ -88,7 +88,7 @@ async def ingest(request:IngestRequest):
         return IngestResponse(
             total_documents=result["total_documents"],
             total_chunks=result["total_chunks"],
-            total_embedded=results["total_embedded"],)
+            total_embedded=result["total_embedded"],)
     
     except Exception as e:
         logger.error(f"Ingestion failed:{e}")

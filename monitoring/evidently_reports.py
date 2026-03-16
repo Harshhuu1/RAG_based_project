@@ -49,7 +49,7 @@ def generate_drift_report(
 
     #save report to HTML file
     Path(report_path).mkdir(parents=True,exist_ok=True)
-    timestamp=datatime.now().strftime("%Y%m%d_%H%M%S")
+    timestamp=datetime.now().strftime("%Y%m%d_%H%M%S")
     output_path=f"{report_path}/drift_report_{timestamp}.html"
     report.save_html(output_path)
 
@@ -119,4 +119,3 @@ if __name__=="__main__":
     results=generate_drift_report(reference,current)
     print(f" drift detected: {results['drift_detected']}")
     print(f" report saved :{results['report_path']}")
-    

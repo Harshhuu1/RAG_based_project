@@ -11,36 +11,15 @@ DocMind lets you upload any document (PDF, DOCX, TXT, Markdown) and ask question
 ---
 
 ## Architecture
+![Architecture](C:\Users\ASUS\Desktop\Desktop1\MLOPS\RAG_based_project\docs\images\docmind_architecture.svg)
+---
+## Screenshots
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                     User Interface                       │
-│                  (Streamlit — port 8501)                 │
-└───────────────────────┬─────────────────────────────────┘
-                        │ HTTP
-┌───────────────────────▼─────────────────────────────────┐
-│                    FastAPI Backend                        │
-│                     (port 8000)                          │
-│   /upload    /query    /ingest    /health    /metrics    │
-└──────┬──────────────┬──────────────────────┬────────────┘
-       │              │                      │
-┌──────▼──────┐ ┌─────▼──────┐    ┌─────────▼──────────┐
-│  LangGraph  │ │  Ingestion  │    │     Monitoring      │
-│    Agent    │ │  Pipeline   │    │  Prometheus+Grafana │
-│             │ │             │    │     (port 3000)     │
-│ ┌─────────┐ │ │ Load→Chunk  │    └────────────────────┘
-│ │RAG Tool │ │ │  →Embed     │
-│ ├─────────┤ │ │  →Store     │    ┌────────────────────┐
-│ │Web Search│ │ └──────┬──────┘   │      MLflow        │
-│ ├─────────┤ │        │           │  Experiment Track  │
-│ │Code Exec│ │ ┌──────▼──────┐   │    (port 5000)     │
-│ └─────────┘ │ │  ChromaDB   │   └────────────────────┘
-└─────────────┘ │ Vector DB   │
-                │ (port 8001) │
-                └─────────────┘
-```
+### Chat Interface
+![UI](C:\Users\ASUS\Desktop\Desktop1\MLOPS\RAG_based_project\docs\images\Screenshot 2026-03-16 135555.png)
 
 ---
+
 
 ## Tech Stack
 

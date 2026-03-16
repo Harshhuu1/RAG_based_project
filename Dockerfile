@@ -16,6 +16,7 @@ EXPOSE 7860
 
 ENV API_URL=https://your-fastapi-url.onrender.com
 
-CMD ["streamlit", "run", "ui/app.py", \
+CMD ["streamlit", "run", "/app/ui/app.py", \
      "--server.port=7860", \
-     "--server.address=0.0.0.0"]
+     "--server.address=0.0.0.0", \
+     "--server.fileWatcherType=none"]

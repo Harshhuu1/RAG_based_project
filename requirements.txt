@@ -8,7 +8,7 @@ langgraph
 tavily-python
 chromadb
 pypdf
-docx2txt
+python-docx
 tiktoken
 mlflow
 ragas

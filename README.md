@@ -11,14 +11,18 @@ DocMind lets you upload any document (PDF, DOCX, TXT, Markdown) and ask question
 ---
 
 ## Architecture
-![Architecture](C:\Users\ASUS\Desktop\Desktop1\MLOPS\RAG_based_project\docs\images\docmind_architecture.svg)
+![Architecture](docs/images/image.png)
+
 ---
+
 ## Screenshots
 
 ### Chat Interface
-![UI](C:\Users\ASUS\Desktop\Desktop1\MLOPS\RAG_based_project\docs\images\Screenshot 2026-03-16 135555.png)
+![UI](docs/images/ui.png)
 
----
+![Prometheus](docs/images/Screenshot%202026-03-16%20135630.png)
+
+![FastAPI](docs/images/Screenshot%202026-03-16%20135610.png)
 
 
 ## Tech Stack

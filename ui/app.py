@@ -81,7 +81,7 @@ st.markdown("---")
 
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
-        st.markdown(message["content"]):
+        st.markdown(message["content"])
         if "latency" in message:
             st.caption(f" {message['latency']:.0f}ms")
 #chat input

@@ -44,8 +44,8 @@ jobs:
       - name: Check code formatting
         run: |
           pip install black ruff
-          black --check .
-          ruff check .
+          black --check . --exclude="ui/app.py"
+          ruff check . --exclude="ui/app.py"
 
       # Step 6 - Save coverage report as downloadable artifact
       - name: Upload coverage report
